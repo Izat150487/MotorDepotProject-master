@@ -9,12 +9,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
 public class Main {
     private static GsonBuilder GSON_BUILDER = new GsonBuilder();
     private static Gson GSON = GSON_BUILDER.setPrettyPrinting().create();
-
     private static Path URI = Paths.get("./trucks.json");
+
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -31,59 +33,55 @@ public class Main {
         };
         print(trucks);
         print(drivers);
-    }
 
-        public static void print(Truck[] trucks) {
-            System.out.println("~~~~~~~~~~~~ * TRUCKS * ~~~~~~~~~~~~");
-            System.out.println(" #|   Bus    | Driver | State");
-            System.out.println("--+-----------+------+---------");
-            for (int j = 0; j < trucks.length; j++) {
-                System.out.println(trucks[j]);
-
-            }
-        }
-
-        public static void print(Driver[] drivers) {
-            System.out.println("~~~~~ * DRIVERS * ~~~~~");
-            System.out.println();
-            System.out.println("# |    Driver   | Bus ");
-            System.out.println("-----------------------");
-            for (int j = 0; j < drivers.length; j++) {
-                System.out.println(drivers[j]);
-            }
-        }
-
-
-    /*String json = GSON.toJson(trucks);
-        System.out.println(readTruckFile());
+        /*String jsonTruck = GSON.toJson(trucks);
         writeCarFile(json);
+        String jsonDriver = GSON.toJson(drivers);
+        writeDriverFile(json);*/
 
-        Truck[] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
-        for (Truck truck : trucks1) {
-            System.out.println(truck);
-       }
-   }*/
+    System.out.println("******************************");
+    while(true){
+        System.out.println("Choose one of the trucks: ");
+        int input = scanner.nextInt();
+        scanner.nextLine();
+        Service service = new TruckService();
+        getInstruction();
+        String action = scanner.nextLine();
+        if (action.equals("1")) {
+            service.changeDriver(trucks[input - 1], drivers[input - 1]);
+        } else if (action.equals("2")) {
+            service.startDriving(trucks[input - 1], drivers[input - 1]);
+        } else if (action.equals("3")) {
+            service.startRepair(trucks[input - 1], drivers[input - 1]);
+        }
+        print(trucks);
+        print(drivers);
+    }
 
-    private static  void writeCarFile(String json) {
+}
+    public static void print(Truck[] trucks) {
+        System.out.println("~~~~~~~~~~~~ * TRUCKS * ~~~~~~~~~~~~");
+        System.out.println(" #|   Bus    | Driver | State");
+        System.out.println("--+-----------+------+---------");
+        for (int j = 0; j < trucks.length; j++) {
+            System.out.println(trucks[j]);
 
-        try {
-            Files.writeString(URI, json, StandardOpenOption.CREATE,StandardOpenOption.WRITE);
-        }catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    private static String readTruckFile() {
-        String json = " ";
-        int id;
-        try {
-            FileReader reader = new FileReader(String.valueOf(URI));
-            while ((id = reader.read()) != -1) {
-                json += (char) id;
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
+    public static void print(Driver[] drivers) {
+        System.out.println("~~~~~ * DRIVERS * ~~~~~");
+        System.out.println();
+        System.out.println("# |    Driver   | Bus ");
+        System.out.println("-----------------------");
+        for (int j = 0; j < drivers.length; j++) {
+            System.out.println(drivers[j]);
         }
-        return json;
+    }
+        public static void getInstruction() {
+            System.out.println("Select -1- to change driver ");
+            System.out.println("Select -2- to start driving ");
+            System.out.println("Select -3- to start repairing ");
+
     }
 }
