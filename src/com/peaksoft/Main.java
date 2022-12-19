@@ -54,15 +54,15 @@ public class Main {
         }
 
 
-      //  String json = GSON.toJson(trucks);
-    //    System.out.println(readTruckFile());
-       // writeCarFile(json);
+    /*String json = GSON.toJson(trucks);
+        System.out.println(readTruckFile());
+        writeCarFile(json);
 
-        //Truck[] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
-     //   for (Truck truck : trucks1) {
-           // System.out.println(truck);
-    //    }
-  //  }
+        Truck[] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
+        for (Truck truck : trucks1) {
+            System.out.println(truck);
+       }
+   }*/
 
     private static  void writeCarFile(String json) {
 
