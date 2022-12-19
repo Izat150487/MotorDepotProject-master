@@ -40,4 +40,8 @@ public class Driver {
         this.bus = bus;
     }
 
+    @Override
+    public String toString() {
+        return id + " |  " + name + "  |  " + bus + '\n';
+    }
 }

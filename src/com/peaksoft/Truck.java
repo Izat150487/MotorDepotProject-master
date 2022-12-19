@@ -51,11 +51,6 @@ public class Truck {
 
     @Override
     public String toString() {
-        return "Truck{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", driver='" + driver + '\'' +
-                ", status=" + status +
-                '}';
+        return id + " |  " + name +"  | "+ "     |  " + status + '\n';
     }
 }

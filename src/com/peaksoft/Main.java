@@ -19,19 +19,50 @@ public class Main {
     public static void main(String[] args) {
 
         Truck[] trucks = {
-                new Truck(1, "Renault Magnum", " ", Status.BASE),
-                new Truck(2, "Volvo", " ", Status.BASE),
-                new Truck(3, "DAF XT", " ", Status.BASE),
+                new Truck(1, "Renault", " ", Status.BASE),
+                new Truck(2, "Volvo  ", " ", Status.BASE),
+                new Truck(3, "DAF XT ", " ", Status.BASE),
         };
-        String json = GSON.toJson(trucks);
-        System.out.println(readTruckFile());
+
+        Driver[] drivers = {
+                new Driver(1, "Kurmanbek", " "),
+                new Driver(2, "Ibrakhim ", " "),
+                new Driver(3, "Syimyk   ", " "),
+        };
+        print(trucks);
+        print(drivers);
+    }
+
+        public static void print(Truck[] trucks) {
+            System.out.println("~~~~~~~~~~~~ * TRUCKS * ~~~~~~~~~~~~");
+            System.out.println(" #|   Bus    | Driver | State");
+            System.out.println("--+-----------+------+---------");
+            for (int j = 0; j < trucks.length; j++) {
+                System.out.println(trucks[j]);
+
+            }
+        }
+
+        public static void print(Driver[] drivers) {
+            System.out.println("~~~~~ * DRIVERS * ~~~~~");
+            System.out.println();
+            System.out.println("# |    Driver   | Bus ");
+            System.out.println("-----------------------");
+            for (int j = 0; j < drivers.length; j++) {
+                System.out.println(drivers[j]);
+            }
+        }
+
+
+      //  String json = GSON.toJson(trucks);
+    //    System.out.println(readTruckFile());
        // writeCarFile(json);
 
-        Truck[] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
-        for (Truck truck : trucks1) {
-            System.out.println(truck);
-        }
-    }
+        //Truck[] trucks1 = GSON.fromJson(readTruckFile(), Truck[].class);
+     //   for (Truck truck : trucks1) {
+           // System.out.println(truck);
+    //    }
+  //  }
 
     private static  void writeCarFile(String json) {
 
