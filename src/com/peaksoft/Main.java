@@ -41,7 +41,7 @@ public class Main {
 
     System.out.println("******************************");
     while(true){
-        System.out.println("Choose one of the trucks: ");
+        System.out.println("Выберите один из грузовиков: ");
         int input = scanner.nextInt();
         scanner.nextLine();
         Service service = new TruckService();
@@ -79,9 +79,9 @@ public class Main {
         }
     }
         public static void getInstruction() {
-            System.out.println("Select -1- to change driver ");
-            System.out.println("Select -2- to start driving ");
-            System.out.println("Select -3- to start repairing ");
+            System.out.println("Выберите -1- для смены водителя ");
+            System.out.println("Выберите -2-, чтобы начать движение ");
+            System.out.println("Выберите -3-, чтобы начать ремонт ");
 
     }
 }

@@ -15,7 +15,7 @@ public class Driver {
 
     public static final GsonBuilder BUILDER = new GsonBuilder();
     public static final Gson GSON = BUILDER.setPrettyPrinting().create();
-    private static Path URI = Paths.get("./drivers.json");
+    public static final Path WRITE_PATH = Paths.get("./drivers.json");
 
     private int id;
     private String name;
@@ -75,9 +75,9 @@ public class Driver {
     }
 
     private static  void writeDriverFile(String json) {
-
+        Path write = Paths.get(String.valueOf(WRITE_PATH));
         try {
-            Files.writeString(URI, json, StandardOpenOption.CREATE,StandardOpenOption.WRITE);
+            Files.writeString(WRITE_PATH, json, StandardOpenOption.CREATE,StandardOpenOption.WRITE);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -85,9 +85,10 @@ public class Driver {
 
     private static String readDriverFile() {
         String json = " ";
-        int id;
+
         try {
-            FileReader reader = new FileReader(String.valueOf(URI));
+            FileReader reader = new FileReader(String.valueOf(WRITE_PATH));
+            int id;
             while ((id = reader.read()) != -1) {
                 json += (char) id;
             }

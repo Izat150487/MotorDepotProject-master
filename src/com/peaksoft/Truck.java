@@ -13,7 +13,7 @@ import java.nio.file.StandardOpenOption;
 public class Truck {
     public static final GsonBuilder BUILDER = new GsonBuilder();
     public static final Gson GSON = BUILDER.setPrettyPrinting().create();
-    private static Path URI = Paths.get("./trucks.json");
+    public static final Path WRITE_PATH = Paths.get("./truck.json");
 
     private int id;
     private String name;
@@ -82,7 +82,7 @@ public class Truck {
     private static  void writeCarFile(String json) {
 
         try {
-            Files.writeString(URI, json, StandardOpenOption.CREATE,StandardOpenOption.WRITE);
+            Files.writeString(WRITE_PATH, json, StandardOpenOption.CREATE,StandardOpenOption.WRITE);
         }catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,7 +92,7 @@ public class Truck {
         String json = " ";
         int id;
         try {
-            FileReader reader = new FileReader(String.valueOf(URI));
+            FileReader reader = new FileReader(String.valueOf(WRITE_PATH));
             while ((id = reader.read()) != -1) {
                 json += (char) id;
             }
